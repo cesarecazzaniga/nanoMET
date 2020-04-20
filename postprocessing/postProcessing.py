@@ -62,16 +62,16 @@ year = int(options.year)
 
 allSamples = []
 if year == 2016:
-    from Samples.nanoAOD.Summer16_private_legacy_v1 import allSamples as Summer16_private_legacy_v1
-    from Samples.nanoAOD.Run2016_17Jul2018_private import allSamples as Run2016_17Jul2018_private
+    from nanoMET.nanoAOD.Summer16_private_legacy_v1 import allSamples as Summer16_private_legacy_v1
+    from nanoMET.nanoAOD.Run2016_17Jul2018_private import allSamples as Run2016_17Jul2018_private
     allSamples = Summer16_private_legacy_v1 + Run2016_17Jul2018_private
 elif year == 2017:
-    from Samples.nanoAOD.Fall17_private_legacy_v1 import allSamples as Fall17_private_legacy_v1
-    from Samples.nanoAOD.Run2017_31Mar2018_private import allSamples as Run2017_31Mar2018_private
+    from nanoMET.nanoAOD.Fall17_private_legacy_v1 import allSamples as Fall17_private_legacy_v1
+    from nanoMET.nanoAOD.Run2017_31Mar2018_private import allSamples as Run2017_31Mar2018_private
     allSamples = Fall17_private_legacy_v1 + Run2017_31Mar2018_private
 elif year == 2018:
-    from Samples.nanoAOD.Autumn18_private_legacy_v1 import allSamples as Autumn18_private_legacy_v1
-    from Samples.nanoAOD.Run2018_17Sep2018_private import allSamples as Run2018_17Sep2018_private
+    from nanoMET.nanoAOD.Autumn18_private_legacy_v1 import allSamples as Autumn18_private_legacy_v1
+    from nanoMET.nanoAOD.Run2018_17Sep2018_private import allSamples as Run2018_17Sep2018_private
     allSamples = Autumn18_private_legacy_v1 + Run2018_17Sep2018_private
 
 logger.info("Searching for sample %s"%options.samples[0])
@@ -119,6 +119,7 @@ if sample.isData:
 else:
     lumiScaleFactor = sample.xSection * targetLumi / float(sample.normalization)
 
+print sample.name
 keepSampleName = sample.name # to mitigate Mateusz change of naming convention
 
 # filebased job splitting
@@ -234,7 +235,7 @@ METCollection   = "METFixEE2017" if year == 2017 else "MET"
 vetoEtaRegion = (2.65, 3.14) if year == 2017 else (10,10)
 
 METBranchName = 'MET' if not year == 2017 else 'METFixEE2017'
-JMECorrector = createJMECorrector(isMC=(not sample.isData), dataYear=year, runPeriod=era, jesUncert="Total", jetType = "AK4PFchs", metBranchName=METBranchName, isFastSim=False, applySmearing=False)
+JMECorrector = createJMECorrector(isMC=(not sample.isData), dataYear=year, runPeriod=era, jesUncert="Total", jetType = "AK4PFchs", metBranchName=METBranchName, isFastSim=False)
 modules = [
     JMECorrector()
 ]
