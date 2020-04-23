@@ -10,6 +10,6 @@ if os.environ['USER'] in ['llechner']:
     data_directory                  = "/eos/cms/store/group/phys_susy/hephy/nanoMET/"
     postprocessing_output_directory = "/eos/cms/store/group/phys_susy/hephy/nanoMET/"
     
-dbDir = '%s/nanoMET/tools/cache/'%os.environ['CMSSW_BASE']
+dbDir = '%s/src/nanoMET/tools/cache/'%os.environ['CMSSW_BASE']
 redirector_global = 'root://cms-xrd-global.cern.ch/'
 
