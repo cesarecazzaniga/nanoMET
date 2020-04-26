@@ -115,9 +115,9 @@ except: pass
 
 # Make samples, will be searched for in the postProcessing directory
 if args.year == 2016:
-    postProcessing_directory = "2016_v22/dimuon/"
+    postProcessing_directory = "2016_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Summer16_postProcessed import *
-    postProcessing_directory = "2016_v22/dimuon/"
+    postProcessing_directory = "2016_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Run2016_17Jul2018_postProcessed import *
     data_sample = DoubleMuon_Run2016
     mc          = [DY_LO_16, Top_16, diboson_16, rare_16]
@@ -126,9 +126,9 @@ if args.year == 2016:
     triggers    = ['HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 'HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL', 'HLT_IsoMu24', 'HLT_IsoTkMu24']
 
 elif args.year == 2017:
-    postProcessing_directory = "2017_v22/dimuon/"
+    postProcessing_directory = "2017_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Fall17_postProcessed import *
-    postProcessing_directory = "2017_v22/dimuon/"
+    postProcessing_directory = "2017_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Run2017_31Mar2018_postProcessed import *
     data_sample = DoubleMuon_Run2017
     mc          = [DY_LO_17, Top_17, diboson_17, rare_17]
@@ -137,9 +137,9 @@ elif args.year == 2017:
     triggers    = ['HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 'HLT_IsoMu27']
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v22/dimuon/"
+    postProcessing_directory = "2018_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Autumn18_postProcessed import *
-    postProcessing_directory = "2018_v22/dimuon/"
+    postProcessing_directory = "2018_v1/dimuon/"
     from nanoMET.samples.nanoTuples_Run2018_17Sep2018_postProcessed import *
     data_sample = DoubleMuon_Run2018
     mc          = [DY_LO_18, Top_18, diboson_18, rare_18]

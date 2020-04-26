@@ -37,16 +37,12 @@ argParser.add_argument('--verySmall',           action='store_true',     help='R
 argParser.add_argument('--normalize',           action='store_true',     help='Normalize MC to data?', )
 argParser.add_argument('--reweightSoftJets',    action='store_true',     help='?', )
 argParser.add_argument('--PUup',                action='store_true',     help='?', )
-argParser.add_argument('--test',                action='store_true',     help='?', )
 argParser.add_argument('--plot_directory',      action='store',      default='v13_noSigMax')
-#argParser.add_argument('--year',                action='store',      default=2016, type=int)
+argParser.add_argument('--year',                action='store',      default=2016, type=int)
 argParser.add_argument('--tuneEra',             action='store',      default=False)
 argParser.add_argument('--dataEra',             action='store',      default=False)
-#argParser.add_argument('--jetThreshold',        action='store',      default=15, type=int)
 argParser.add_argument('--selection',           action='store',      default='diMuon-looseLeptonVeto-onZ')
 args = argParser.parse_args()
-
-testSample = Sample.fromFiles('test', ['/afs/hephy.at/data/dspitzbart03/nanoSamples/2017_v14/dimuon/DoubleMuon_Run2017B_31Mar2018/nanoAOD_10_Skim.root'])
 
 # Logger
 import nanoMET.tools.logger as logger
@@ -83,7 +79,7 @@ if pTdependent:           args.plot_directory += "_pTdep"
 
 # define setting
 if year == 2016:
-    postProcessing_directory = "2016_v22/dimuon/"
+    postProcessing_directory = "2016_v1/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL", "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL", "HLT_IsoMu24", "HLT_IsoTkMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"
@@ -99,7 +95,7 @@ if year == 2016:
     vv                       = diboson_16
 
 elif year == 2017:
-    postProcessing_directory = "2017_v22/dimuon/"
+    postProcessing_directory = "2017_v1/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ", "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8", "HLT_IsoMu27"]
     METPtVar                 = "METFixEE2017_pt"
     METPhiVar                = "METFixEE2017_phi"
@@ -119,7 +115,7 @@ elif year == 2017:
     vv                       = diboson_17
 
 elif year == 2018:
-    postProcessing_directory = "2018_v22/dimuon/"
+    postProcessing_directory = "2018_v1/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8", "HLT_IsoMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"
@@ -137,11 +133,6 @@ elif year == 2018:
 JERData      = JetResolution(jerData)
 JERMC        = JetResolution(jerMC)
 
-if args.test:
-    data_sample      = testSample
-    data_sample.lumi = 1
-    mc               = [testSample]
-    
 # Text on the plots
 def drawObjects( plotData, dataMCScale, lumi_scale ):
     tex = ROOT.TLatex()
@@ -195,8 +186,6 @@ def calcMETSig( event, sample ):
     ev = Event(event, JER, isData=sample.isData, METPtVar=METPtVar, METPhiVar=METPhiVar, JetCollection=JetCollection, vetoEtaRegion=vetoEtaRegion, jetThreshold=jetThresh, pTdepMetSig=pTdependent)
     ev.calcMETSig(params)
     event.MET_significance_rec = ev.MET_sig
-    if args.test:
-        logger.info('MET Sig: %f, %f'%(ev.MET_sig, event.MET_significance))
     event.Jet_dpt = [ x*ev.Jet_pt[i] for i,x in enumerate(ev.Jet_dpt) ] if len(ev.Jet_dpt) > 0 else [0]
 
 def getMET_neEmEBalace( event, sample ):

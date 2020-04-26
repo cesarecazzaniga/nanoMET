@@ -43,7 +43,7 @@ logger_rt = logger_rt.get_logger(args.logLevel, logFile = None)
 
 # define setting
 if args.year == 2016:
-    postProcessing_directory = "2016_v22/dimuon/"
+    postProcessing_directory = "2016_v1/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL", "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL", "HLT_IsoMu24", "HLT_IsoTkMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"
@@ -60,7 +60,7 @@ if args.year == 2016:
         jer                  = "Summer16_25nsV1_MC"
 
 elif args.year == 2017:
-    postProcessing_directory = "2017_v22/dimuon/"
+    postProcessing_directory = "2017_v1/dimuon/"
     args.selection          += "-BadEEJetVeto"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ", "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8", "HLT_IsoMu27"]
     METPtVar                 = "METFixEE2017_pt"
@@ -79,7 +79,7 @@ elif args.year == 2017:
         jer                  = "Fall17_V3_MC"
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v22/dimuon/"
+    postProcessing_directory = "2018_v1/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8", "HLT_IsoMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"
