@@ -19,7 +19,7 @@ try:
   import sys
   postProcessing_directory = sys.modules['__main__'].postProcessing_directory
 except:
-  postProcessing_directory = "2017_v22/dimuon/"
+  postProcessing_directory = "2017_v1/dimuon/"
 
 logger.info("Loading MC samples from directory %s", os.path.join(data_directory, postProcessing_directory))
 
@@ -27,7 +27,7 @@ dirs = {}
 
 dirs['DY_LO']           = ["DYJetsToLL_M50_LO"]
 dirs['Top']             = ["TTLep_pow", "T_tWch_ext", "TBar_tWch_ext"]
-dirs['diboson']         = ['VVTo2L2Nu', 'WZTo3LNu_amcatnlo', 'WZTo1L3Nu']
+dirs['diboson']         = ['VVTo2L2Nu', 'WZTo3LNu', 'WZTo1L3Nu']
 dirs['triboson']        = ['WWZ_4F', 'WZZ', 'ZZZ']
 
 directories = { key : [ os.path.join( data_directory, postProcessing_directory, dir) for dir in dirs[key]] for key in dirs.keys()}
