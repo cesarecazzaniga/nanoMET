@@ -31,7 +31,6 @@ argParser.add_argument('--showOnly',          action='store',      default=None)
 argParser.add_argument('--skipJER',           action='store_true', default=False)
 argParser.add_argument('--skipUnclEn',        action='store_true', default=False)
 argParser.add_argument('--small',             action='store_true',                      help='Run only on a small subset of the data?', )
-argParser.add_argument('--runLocal',          action='store_true',                      help='Run local or submit?', )
 argParser.add_argument('--isChild',           action='store_true', default=False)
 argParser.add_argument('--normalizeBinWidth', action='store_true', default=False,       help='normalize wider bins?')
 argParser.add_argument('--dryRun',            action='store_true', default=False,       help='do not launch subjobs')
@@ -94,10 +93,7 @@ if not args.isChild and (args.selectSys == "all" or args.selectSys == "combine")
     if args.selectSys == 'combine':
         jobs.append(command)
     elif args.selectSys == 'all':
-        if args.runLocal:
-            jobs.append(command)
-        else:
-            jobs.append( "submitBatch.py --title='sys' '%s'"%command )
+        jobs.append(command)
 
 #  if args.noMultiThreading: 
   logger.info("Running/submitting all systematics.")
