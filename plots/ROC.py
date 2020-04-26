@@ -12,7 +12,6 @@ from math                               import sqrt, cos, sin, pi
 from RootTools.core.standard            import *
 
 from nanoMET.tools.user                 import plot_directory
-from nanoMET.tools.puReweighting        import getReweightingFunction
 from nanoMET.tools.cutInterpreter       import cutInterpreter
 from nanoMET.tools.metFilters           import getFilterCut
 from nanoMET.tools.helpers              import deltaPhi
@@ -168,9 +167,6 @@ def getLeptonSelection( mode ):
         else:
             # slower trigger turn-on in 2017&2018
             return cutInterpreter.cutString("diMuon1718")
-
-nTrueInt36fb_puRW        = getReweightingFunction(data="PU_2016_36000_XSecCentral", mc="Summer16")
-nTrueInt36fb_puRWUp      = getReweightingFunction(data="PU_2016_36000_XSecUp",      mc="Summer16")
 
 # Loop over channels
 yields     = {}

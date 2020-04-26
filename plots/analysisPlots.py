@@ -16,7 +16,6 @@ from RootTools.core.standard            import *
 from nanoMET.samples.color              import color
 
 from nanoMET.tools.user                 import plot_directory
-from nanoMET.tools.puReweighting        import getReweightingFunction
 from nanoMET.tools.cutInterpreter       import cutInterpreter
 from nanoMET.tools.metFilters           import getFilterCut
 from nanoMET.tools.helpers              import deltaPhi
@@ -402,9 +401,6 @@ sequence += [getNJet]
 if year == 2017:
     sequence += [ getMET_neEmEBalace, getSoftJetWeight ]
 
-nTrueInt36fb_puRW        = getReweightingFunction(data="PU_2016_36000_XSecCentral", mc="Summer16")
-nTrueInt36fb_puRWUp      = getReweightingFunction(data="PU_2016_36000_XSecUp",      mc="Summer16")
-
 # Loop over channels
 yields     = {}
 allPlots   = {}
@@ -435,7 +431,6 @@ for index, mode in enumerate(allModes):
   for sample in mc:
     sample.scale          = lumi_scale
     sample.read_variables = ['puWeight/F','puWeightUp/F', 'Pileup_nTrueInt/F']
-    #sample.weight         = lambda event, sample: event.puWeight*nTrueInt36fb_puRW(event.Pileup_nTrueInt)
     if args.reweightSoftJets:
         sample.weight         = lambda event, sample: event.puWeight * event.reweight_nJetLowPt
     elif args.PUup:
