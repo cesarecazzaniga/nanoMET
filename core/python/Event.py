@@ -37,10 +37,10 @@ class Event:
 
         self.MET_pt     = getattr(event, METPtVar)
         self.MET_phi    = getattr(event, METPhiVar)
-        self.MET_sumPt  = getattr(event, "MET_sumPt")
+        self.MET_sumPtUnclustered  = getattr(event, "MET_sumPtUnclustered")
         
         sumPt_lowPtJet  = sum( [ getattr(event, JetCollection)[x] for x in lowPtJetIndices ] )
-        self.MET_sumPt += sumPt_lowPtJet
+        self.MET_sumPtUnclustered += sumPt_lowPtJet
 
         self.fixedGridRhoFastjetAll = event.fixedGridRhoFastjetAll
         if puWeight:
@@ -89,7 +89,7 @@ class Event:
 
         # unclustered energy
         ind    = 10 if self.pTdepMetSig else 5
-        cov_tt = args[ind]*args[ind] + args[ind+1]*args[ind+1]*self.MET_sumPt
+        cov_tt = args[ind]*args[ind] + args[ind+1]*args[ind+1]*self.MET_sumPtUnclustered
         cov_xx += cov_tt
         cov_yy += cov_tt
 

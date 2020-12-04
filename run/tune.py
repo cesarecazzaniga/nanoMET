@@ -79,7 +79,7 @@ elif args.year == 2017:
         jer                  = "Fall17_V3_MC"
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v1/dimuon/"
+    postProcessing_directory = "2018_v19/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8", "HLT_IsoMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"
@@ -87,11 +87,11 @@ elif args.year == 2018:
     vetoEtaRegion            = (10.,10.)
 
     if args.runData:
-        from nanoMET.samples.nanoTuples_Run2018_17Sep2018_postProcessed import *
+        from nanoMET.samples.nanoTuples_Run2018_02Apr2020_postProcessed import *
         samples              = [DoubleMuon_Run2018]
         jer                  = "Autumn18_V7b_DATA"
     else:
-        from nanoMET.samples.nanoTuples_Autumn18_postProcessed import *
+        from nanoMET.samples.nanoTuples_Autumn18v7_postProcessed import *
         samples              = [DY_LO_18, Top_18, diboson_18, rare_18]
         jer                  = "Autumn18_V7b_MC"
 

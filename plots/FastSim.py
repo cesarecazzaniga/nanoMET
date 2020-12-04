@@ -46,7 +46,7 @@ sample2 = TTJets_FS
 # Sequence
 read_variables =    ["weight/F","puWeight/F","PV_npvsGood/I",
                     #"jet[pt/F,eta/F,phi/F,btagCSV/F,DFb/F,DFbb/F,id/I,btagDeepCSV/F]", "njet/I","nJetSelected/I",
-                    "MET_pt/F", "MET_phi/F", "MET_sumPt/F", "MET_significance/F", "MET_SignificanceRec/F","dl_mass/F", "MET_sumPt/F", "MET_sumEt/F",
+                    "MET_pt/F", "MET_phi/F", "MET_sumPtUnclustered/F", "MET_significance/F", "MET_SignificanceRec/F","dl_mass/F", "MET_sumPtUnclustered/F", "MET_sumEt/F",
                     #"Z_l1_index/I", "Z_l2_index/I", "nonZ_l1_index/I", "nonZ_l2_index/I",
                     #"Z_phi/F","Z_pt/F", "Z_mass/F", "Z_eta/F","Z_lldPhi/F", "Z_lldR/F"
 ]
@@ -134,8 +134,8 @@ plots.append(Plot(
 ))
 
 plots.append(Plot(
-  name = 'MET_sumPt', texX = 'MET Sum(p_{T}) (GeV)', texY = 'Number of Events',
-  attribute = TreeVariable.fromString( "MET_sumPt/F" ),
+  name = 'MET_sumPtUnclustered', texX = 'MET Sum(p_{T}) (GeV)', texY = 'Number of Events',
+  attribute = TreeVariable.fromString( "MET_sumPtUnclustered/F" ),
   binning=[50,0.,2000.],
 ))
 

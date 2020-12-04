@@ -133,10 +133,10 @@ elif args.year == 2017:
     triggers    = ['HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 'HLT_IsoMu27']
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v1/dimuon/"
-    from nanoMET.samples.nanoTuples_Autumn18_postProcessed import *
-    postProcessing_directory = "2018_v1/dimuon/"
-    from nanoMET.samples.nanoTuples_Run2018_17Sep2018_postProcessed import *
+    postProcessing_directory = "2018_v193/dimuon/"
+    from nanoMET.samples.nanoTuples_Autumn18v7_postProcessed import *
+    postProcessing_directory = "2018_v193/dimuon/"
+    from nanoMET.samples.nanoTuples_Run2018_02Apr2020_postProcessed import *
     data_sample = DoubleMuon_Run2018
     mc          = [DY_LO_18, Top_18, diboson_18, rare_18]
     dy          = DY_LO_18

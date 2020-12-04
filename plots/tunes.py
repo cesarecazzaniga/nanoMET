@@ -628,4 +628,210 @@ tuneParams = {
 			'year':         2017,
 		},
 
+
+#LOR MODIFICATION
+
+                # Questi sono i corrispettivi della loro tuneEra= 2016 (guarda all'inizio significa 201650= 2016)
+		#tune_Data_2016_Summer16_25nsV1_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2016_v21
+		#tune_MC_2016_Summer16_25nsV1_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2016_v21 ttbarModifier
+		201650: {
+			'data':         [1.9266047984914008, 1.7318790519081446, 1.5753422965395225, 1.5425764857112496, 1.6546175711358586, 0.00040888004798513206, 0.6290229839555072],
+			'mc':           [1.651666795090836, 1.4956398421399792, 1.4441492965327836, 1.4367808883008095, 1.3277026993932586, -0.0035595329368371953, 0.684106432242713],
+			'jerData':      'Summer16_25nsV1_DATA',
+			'jerMC':        'Summer16_25nsV1_MC',
+			'jetThreshold': 15,
+			'year':         2016,
+		},
+
+                # Questi sono i corrispettivi della loro tuneEra= 2017 (guarda all'inizio significa 201650= 2016)
+		#tune_Data_2017_Fall17_V3_DATA_diMuon-looseLeptonVeto-onZ-BadEEJetVeto_sumPt15_max25_v1_2017_v21
+		#tune_MC_2017_Fall17_V3_MC_diMuon-looseLeptonVeto-onZ-BadEEJetVeto_sumPt15_max25_v1_2017_v21 ttbarModifier
+		201750: {
+			'data':         [1.992070051742427, 2.015582728311108, 1.9296201709297909, 1.6784301156477257, 2.003935022354392, -0.00022236350594790483, 0.6845370314039433],
+			'mc':           [1.630845206514178, 1.658406374635256, 1.6408056390897265, 1.3861755061260543, 1.469337829690986, 0.0020996867477550813, 0.6971653580259841],
+			'jerData':      'Fall17_V3_DATA',
+			'jerMC':        'Fall17_V3_MC',
+			'jetThreshold': 15,
+			'year':         2017,
+		},
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201850= 2018)
+		#tune_Data_2018_Autumn18_V7_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21
+		#tune_MC_2018_Autumn18_V7_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21 ttbarModifier 1
+		201850: {
+			'data':         [1.8733612208524848, 1.9247026669123903, 1.8474884833225658, 1.5210979164313805, 1.6648093168570048, -1.3880036247244853e-05, 0.6825934168735539],
+			'mc':           [1.7496380828809517, 1.6875320564474379, 1.6116830381207348, 1.4665253623196906, 1.2381650540774438, -2.3495422495864796e-05, 0.6453296424193816],
+			'jerData':      'Autumn18_V7_DATA',
+			'jerMC':        'Autumn18_V7_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201851= 201850) ma con ptdep
+		#tune_DATA_2018_Autumn18_V7_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_pTdep_v1
+		#tune_MC_2018_Autumn18_V7_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21 ttbarModifier 1
+		201851: {
+			'data':         [2.269265377598418, 1.2878556380320973, 2.2088989018454335, 1.3718441634429972, 1.9659492622608672, 1.430084780115819, 1.5761098448066129, 1.24480927659561, 1.6849093643365725, 1.6060149970771316, -8.113209811935491e-05, 0.6767253499427207],
+			'mc':           [2.191521600761251, 1.3377222599145595, 2.0473205808292554, 1.345536310244129, 1.8412869615455503, 1.121624644405746, 1.486490707422721, 1.1639002897938453, 1.2397284825546144, 1.019280707193987, -0.000316350847351746, 0.6412486659295332],
+
+			'jerData':      'Autumn18_V7_DATA',
+			'jerMC':        'Autumn18_V7_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+    
+                #tune_DATA_2018_Autumn18_V7_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21
+		#tune_MC_2018_Autumn18_V7_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_ttM_2_2018_v1.txt     ttbarModifier 2,  No PTdep
+                201852: {
+			'data':         [1.8733612208524848, 1.9247026669123903, 1.8474884833225658, 1.5210979164313805, 1.6648093168570048, -1.3880036247244853e-05, 0.6825934168735539],
+			'mc':           [1.8694656773483662, 1.6984467066747202, 1.6242850669371411, 1.4489065463756206, 1.2263594404097056, 0.0009472527202736281, 0.6473970843592528],
+
+			'jerData':      'Autumn18_V7_DATA',
+			'jerMC':        'Autumn18_V7_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+# Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201850= 2018)
+		#tune_Data_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21 ttbarModifier 1
+
+		201860: {
+			'data':         [1.7619384694017988, 1.713902689809088, 1.6683763704331758, 1.340053961297788, 1.6023132777584954, -0.0005739735819714452, 0.6834245903639763],
+			'mc':           [1.7112715901300906, 1.6644219611889002, 1.6191343462802392, 1.478531474629948, 1.2045270290220924, 0.0013217650728407013, 0.6484445716511148],
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201851= 201850) ma con ptdep
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_pTdep_v1
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21 ttbarModifier 1
+		201861: {
+			'data':         [2.195562179842801, 1.2184002038247077, 2.0195409820651, 1.2139439206482205, 1.802054083849926, 1.0695728583288298, 1.4078237459237979, 0.948789440922703, 1.615292215805169, 1.3922950048892708, -0.00017024905941117642, 0.676156719927834],
+			'mc':           [2.1957356904535916, 1.2714054660010041, 1.9569409226417367, 1.2732510988607644, 1.8628739679652213, 1.0861527765021883, 1.4754691012800294, 0.9916396936294601, 1.231125059790088, 0.99583380388638, -0.0014759312002569436, 0.644860965426122],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+    
+                #tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21       #DA CAMBIARE I VALORI!!
+		#Tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_ttM_2_2018_v1.txt     ttbarModifier 2,  No PTdep
+                201862: {
+			'data':         [1.8733612208524848, 1.9247026669123903, 1.8474884833225658, 1.5210979164313805, 1.6648093168570048, -1.3880036247244853e-05, 0.6825934168735539],
+			'mc':           [1.7969511080684748, 1.7686363761595236, 1.5892759082098498, 1.4428402167314698, 1.2455994131025094, 0.00046819089533419594, 0.6479635650175228],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_2018_v7
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_2018_v7 ttbarModifier
+
+		201863: {
+			'data':         [1.4021239921148028, 1.3974083502094898, 1.2835807135084072, 1.3077419921619349, 1.6495121636113266, 3.142997445106143e-05, 0.7419512879282697],
+			'mc':           [1.5405416118280013, 1.3939599033609882, 1.33334011770139, 1.3331128517530588, 1.1729356002225642, 0.0002986396370771374, 0.6884385032818289],
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201851= 201850) ma con ptdep
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_pTdep_2018_v7
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_pTdep_2018_v7 ttbarModifier
+
+		201864: {
+			'data':         [-1.72993134574512, 1.2042672371746566, 1.7971435605522184, -1.160273746309529, 1.3962523457696547, -1.1534205803735944, 1.4190252517335946, -1.0918521298650816, 1.8063612559810567,1.3126840974497864, -0.00041764537785642184, 0.7423738706479167],
+			'mc':           [1.7981665743788378, 1.3754866492792328, 1.5383568618003594, 1.3065922034154032, 1.5913643634271473, -1.1181010981951487, 1.4433992481113638, -1.1265900595641396, 1.18319812293277,-1.029426858561985, 0.0009211190144601672, 0.6901002993813901],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+#LOR Try with central produced nanoAODv7. Sarebbe v19
+    # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201850= 2018)
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v19_2018_v19
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v19_2018_v19 ttbarModifier 1
+
+		201899: {
+			'data':        [1.6920121335793759, 1.6857326368531307, 1.5616058777682056, 1.354644121361604, 1.540213907405874, 0.0002222321882632476, 0.6423649298838915],
+			'mc':           [1.613165342723556, 1.5745879445558884, 1.636304135309313, 1.3234572369718391, 1.149196560879823, -6.483243140593964e-05, 0.6052764471230091],
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201851= 201850) ma con ptdep
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v19_2018_pTdep_2018_v19
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v19_pTdep_2018_v19.txt
+		201898: {
+			'data':         [2.1039570989471557, 1.250325687413643, 1.9365941003853313, 1.1768269876808501, 1.796844588913782, 1.174033631178956, 1.3991910543747332, 1.1095312404368427, 1.5546962386718597, 1.277734633283043, 0.00034915632012846864, 0.6345274894206903],
+			'mc':           [2.204671383026374, 1.1215862264865533, 1.9488438950114304, 1.2697115521163889, 1.7776803289501855, 1.4329682567824755, 1.3314360915564265, 1.279610252107423, 1.1632918202510927, 0.8531313049942433, 0.0028026207684752856, 0.6008168579363764],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+    
+                #tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v1_2018_v21       #DA CAMBIARE I VALORI!!
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt15_max25_v19_ttM_2_2018_v19.txt     ttbarModifier 2,  No PTdep
+                201897: {
+			'data':         [1.6920121335793759, 1.6857326368531307, 1.5616058777682056, 1.354644121361604, 1.540213907405874, 0.0002222321882632476, 0.6423649298838915],
+			'mc':           [1.7028573985481006, 1.6323222366438597, 1.6696351242512024, 1.345814940066825, 1.1576186754950133, -7.544223776748474e-05, 0.6046837589935635],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v19_2018_v19
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v19_2018_v19 ttbarModifier
+
+		201896: {
+			'data':         [1.4085836628096517, 1.3048817939694821, 1.3453122996652132, 1.2201858794777432, 1.6542570753042976, -0.00029090056830012893, 0.699630322547306],
+			'mc':           [1.3228369046492339, 1.3400475080229737, 1.4051572303173503, 1.2930999724789978, 0.9756676176422463, 0.005536525434420146, 0.6421175879364257],
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+                # Questi sono i corrispettivi della loro tuneEra= 2018 (guarda all'inizio significa 201851= 201850) ma con ptdep
+		#tune_DATA_2018_Autumn18_V7b_DATA_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_pTdep_2018_v7
+		#tune_MC_2018_Autumn18_V7b_MC_diMuon-looseLeptonVeto-onZ_sumPt25_max25_v7_pTdep_2018_v7 ttbarModifier
+
+		201895: {
+			'data':         [-1.72993134574512, 1.2042672371746566, 1.7971435605522184, -1.160273746309529, 1.3962523457696547, -1.1534205803735944, 1.4190252517335946, -1.0918521298650816, 1.8063612559810567,1.3126840974497864, -0.00041764537785642184, 0.7423738706479167],
+			'mc':           [1.7981665743788378, 1.3754866492792328, 1.5383568618003594, 1.3065922034154032, 1.5913643634271473, -1.1181010981951487, 1.4433992481113638, -1.1265900595641396, 1.18319812293277,-1.029426858561985, 0.0009211190144601672, 0.6901002993813901],
+
+			'jerData':      'Autumn18_V7b_DATA',
+			'jerMC':        'Autumn18_V7b_MC',
+			'jetThreshold': 15,
+			'year':         2018,
+		},
+
+
+
+
 	}

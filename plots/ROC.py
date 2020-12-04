@@ -127,7 +127,7 @@ def drawPlots(plots, mode, dataMCScale):
       )
 
 # Read variables and sequences
-read_variables = ["weight/F", "MET_pt/F", "MET_phi/F", "MET_sumPt/F",
+read_variables = ["weight/F", "MET_pt/F", "MET_phi/F", "MET_sumPtUnclustered/F",
                   "fixedGridRhoFastjetAll/F", "Muon[pt/F,eta/F,phi/F]",
                   "Jet[pt/F,eta/F,phi/F,cleanmask/I,cleanmaskMETSig/I,neEmEF/F,jetId/I]",
                   "nJet/I", "GenMET_pt/F", "PV_npvsGood/I"

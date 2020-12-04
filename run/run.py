@@ -38,9 +38,9 @@ class run:
 
         self.eventlist = []
         if samples[0].isData:
-            self.variables = map( TreeVariable.fromString,  ["nJet/I", "fixedGridRhoFastjetAll/F", "%s/F"%METPtVar, "%s/F"%METPhiVar, "MET_sumPt/F"] )
+            self.variables = map( TreeVariable.fromString,  ["nJet/I", "fixedGridRhoFastjetAll/F", "%s/F"%METPtVar, "%s/F"%METPhiVar, "MET_sumPtUnclustered/F"] )
         else:
-            self.variables = map( TreeVariable.fromString,  ["weight/F", "puWeight/F", "puWeightUp/F", "puWeightDown/F", "nJet/I", "fixedGridRhoFastjetAll/F", "PV_npvsGood/I", "%s/F"%METPtVar, "%s/F"%METPhiVar, "MET_sumPt/F"] )
+            self.variables = map( TreeVariable.fromString,  ["weight/F", "puWeight/F", "puWeightUp/F", "puWeightDown/F", "nJet/I", "fixedGridRhoFastjetAll/F", "PV_npvsGood/I", "%s/F"%METPtVar, "%s/F"%METPhiVar, "MET_sumPtUnclustered/F"] )
         self.variables += [VectorTreeVariable.fromString("Jet[pt/F,eta/F,phi/F,cleanmask/O,jetId/I,cleanmaskMETSig/I,cleanmaskMETSigRec/I]" ) ]
         if JetCollection=="Jet_pt_nom":
             self.variables += [VectorTreeVariable.fromString("Jet[pt_nom/F]")]

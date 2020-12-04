@@ -70,9 +70,12 @@ elif year == 2017:
     from nanoMET.nanoAOD.Run2017_31Mar2018_private import allSamples as Run2017_31Mar2018_private
     allSamples = Fall17_private_legacy_v1 + Run2017_31Mar2018_private
 elif year == 2018:
-    from nanoMET.nanoAOD.Autumn18_private_legacy_v1 import allSamples as Autumn18_private_legacy_v1
-    from nanoMET.nanoAOD.Run2018_17Sep2018_private import allSamples as Run2018_17Sep2018_private
-    allSamples = Autumn18_private_legacy_v1 + Run2018_17Sep2018_private
+    #from nanoMET.nanoAOD.Autumn18_private_legacy_v1 import allSamples as Autumn18_private_legacy_v1
+    #from nanoMET.nanoAOD.Run2018_17Sep2018_private import allSamples as Run2018_17Sep2018_private
+    from nanoMET.nanoAOD.Run2018_02Apr2020_private import allSamples as Run2018_02Apr2020_private #LOR added it to Switch to nanoAODv7 02Apr2020                                    
+    from nanoMET.nanoAOD.Autumn18_central_legacy_v1 import allSamples as Autumn18_central_legacy_v1
+    allSamples = Autumn18_central_legacy_v1 + Run2018_02Apr2020_private 
+
 
 logger.info("Searching for sample %s"%options.samples[0])
 
@@ -106,6 +109,7 @@ else:
 logger.info("Sample contains %s files", len(sample.files))
 sample.files = sorted(sample.files) # in order to avoid some random ordered file list, different in each job
 
+#era = None #Lor added this line to use JER V19
 if sample.isData:
     era = extractEra(samples[0].name)[-1]
 else:
@@ -203,7 +207,7 @@ if year == 2016:
 
 elif year == 2017:
     puwProducer = puWeightProducer("auto",pufile_data2017,"pu_mc","pileup",verbose=False)
-    ## tuning from November 2019, with sumPt threshold of 15
+    ## tuning from November 2019, with sumPt threshold of 15 
     metSigParamsMC      = [1.7037614210331564, 1.7166071080686363, 1.6701114323915047, 1.502876236941622, 1.5780611987345947, -0.00012634174329968426, 0.6834329126092852]
     metSigParamsData    = [1.9410724258735805, 1.878895369894863, 1.9122297708165825, 1.7090755971750793, 2.0004413703111146, -0.0001347239857148459, 0.6732736907156339]
     JER                 = "Fall17_V3_MC"                if not sample.isData else "Fall17_V3_DATA"
@@ -212,10 +216,11 @@ elif year == 2017:
 
 elif year == 2018:
     puwProducer = puWeightProducer("auto",pufile_data2018,"pu_mc","pileup",verbose=False)
-    ## tuning from November 2019, with sumPt threshold of 15
-    metSigParamsMC      = [1.8549938037723896, 1.6509411315853, 1.636437587406195, 1.4672590328655033, 1.247095140902097, -6.784962823364049e-05, 0.6354413715418223]
-    metSigParamsData    = [1.7597963093944353, 1.7529358941285436, 1.6542030082916106, 1.355947946214444, 1.62529299229821, 0.0003583146878367062, 0.6808117480506645]
-    JER                 = "Autumn18_V7b_MC" if not sample.isData else "Autumn18_V7b_DATA"
+    ## tuning from November 2019, with sumPt threshold of 15 #LOR CHANGED IT Nov20, sumPt15
+    metSigParamsMC      = [1.613165342723556, 1.5745879445558884, 1.636304135309313, 1.3234572369718391, 1.149196560879823, 0.000064832431405, 0.6052764471230091]
+    metSigParamsData    = [1.6920121335793759, 1.6857326368531307, 1.5616058777682056, 1.354644121361604, 1.540213907405874, 0.0002222321882632476, 0.6423649298838915]
+    JER                 = "Autumn18_V7b_MC" if not sample.isData else "Autumn18_V7b_DATA"#DEFAULT. Lor may switch this two lines
+    #JER                 = "Autumn18_V7_MC" if not sample.isData else "Autumn18_V7_DATA"
     archive             = '' if not sample.isData else "Autumn18_V19_DATA"
     jetThreshold = 15
 
