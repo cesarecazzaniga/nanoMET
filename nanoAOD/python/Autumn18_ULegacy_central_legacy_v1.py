@@ -29,7 +29,7 @@ from nanoMET.tools.user import redirector_global as redirector
 
 # DB
 from nanoMET.tools.user import dbDir
-dbFile = dbDir+"/samples/DB_Autumn18_central_legacy.sql"
+dbFile = dbDir+"/samples/DB_Autumn18_UL_central_legacy.sql"
 
 logger.info("Using db file: %s", dbFile)
 

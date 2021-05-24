@@ -79,7 +79,7 @@ elif args.year == 2017:
         jer                  = "Fall17_V3_MC"
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v19/dimuon/"
+    postProcessing_directory = "2018_v193/dimuon/"
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8", "HLT_IsoMu24"]
     METPtVar                 = "MET_pt_nom"
     METPhiVar                = "MET_phi_nom"

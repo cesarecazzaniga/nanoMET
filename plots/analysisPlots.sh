@@ -100,25 +100,34 @@
 
 
 #Lor V19 Normal sumPt 15 max 25 v192
-python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201899_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201899_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201899_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201899_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201899_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201899_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-btagA0                   --normalize     --plot_directory ppv1_E201899_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0-btagA0                   --normalize     --plot_directory ppv1_E201899_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201899 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p-btagA0              --normalize     --plot_directory ppv1_E201899_NORM_v193
 
-python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-btagA0                   --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0-btagA0               --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201898 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p-btagA0              --normalize     --plot_directory ppv1_E201898_ptD_NORM_v193
+
 
 #ttM 2
-python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
-
+#python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-btagA0                   --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0-btagA0               --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
+python analysisPlots.py --calcMETSig --tuneEra 201897 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p-btagA0              --normalize     --plot_directory ppv1_E201897_ttM2_NORM_v193
 
 
 # Lor V193 with sumPt 25 max 25
-python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193
-python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193 
+#python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193
+#python analysisPlots.py --calcMETSig --tuneEra 201896 --selection diMuon-looseLeptonVeto-onZ-nCleanJet1p              --normalize     --plot_directory ppv1_E201896_sumPt25_NORM_v193 
 
 #python analysisPlots.py --calcMETSig --tuneEra 201895 --selection diMuon-looseLeptonVeto-onZ                          --normalize     --plot_directory ppv1_E201895_ptD_sumPt25_NORM_v7b
 #python analysisPlots.py --calcMETSig --tuneEra 201895 --selection diMuon-looseLeptonVeto-onZ-nCleanJet0               --normalize     --plot_directory ppv1_E201895_ptD_sumPt25_NORM_v7b
