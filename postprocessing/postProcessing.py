@@ -33,6 +33,9 @@ argParser.add_argument('--prepare',     action='store_true', help="Prepare, don'
 argParser.add_argument('--overwrite',   action='store_true', help="Overwrite" )
 argParser.add_argument('--year',        action='store', default=None, help="Which year? Important for json file.")
 argParser.add_argument('--era',         action='store', default="v1", help="Which era/subdirectory?")
+argParser.add_argument('--ul',          action='store_true', help="Ultra legacy?")
+argParser.add_argument('--prevfp',          action='store_true', help="preVFP for UL16?")
+
 options = argParser.parse_args()
 
 # Logger
@@ -62,19 +65,24 @@ year = int(options.year)
 
 allSamples = []
 if year == 2016:
-    from nanoMET.nanoAOD.Summer16_private_legacy_v1 import allSamples as Summer16_private_legacy_v1
-    from nanoMET.nanoAOD.Run2016_17Jul2018_private import allSamples as Run2016_17Jul2018_private
-    allSamples = Summer16_private_legacy_v1 + Run2016_17Jul2018_private
+    if options.prevfp:
+        from nanoMET.nanoAOD.UL16_nanoAODAPVv9 import allSamples as UL16_nanoAODAPVv9
+        from nanoMET.nanoAOD.UL16_DATA_nanoAODAPVv9 import allSamples as UL16_DATA_nanoAODAPVv9
+        allSamples =  UL16_nanoAODAPVv9 + UL16_DATA_nanoAODAPVv9
+    else:
+        from nanoMET.nanoAOD.UL16_nanoAODv9 import allSamples as UL16_nanoAODv9
+        from nanoMET.nanoAOD.UL16_DATA_nanoAODv9 import allSamples as UL16_DATA_nanoAODv9
+        allSamples =  UL16_nanoAODv9 + UL16_DATA_nanoAODv9
+
 elif year == 2017:
-    from nanoMET.nanoAOD.Fall17_private_legacy_v1 import allSamples as Fall17_private_legacy_v1
-    from nanoMET.nanoAOD.Run2017_31Mar2018_private import allSamples as Run2017_31Mar2018_private
-    allSamples = Fall17_private_legacy_v1 + Run2017_31Mar2018_private
+    from nanoMET.nanoAOD.Summer19_UL17nanoAODv2 import allSamples as Summer19_UL17nanoAODv2
+    from nanoMET.nanoAOD.Run2017_ULnanoAODv2 import allSamples as Run2017_ULnanoAODv2
+    allSamples = Summer19_UL17nanoAODv2 + Run2017_ULnanoAODv2
+
 elif year == 2018:
-    #from nanoMET.nanoAOD.Autumn18_private_legacy_v1 import allSamples as Autumn18_private_legacy_v1
-    #from nanoMET.nanoAOD.Run2018_17Sep2018_private import allSamples as Run2018_17Sep2018_private
-    from nanoMET.nanoAOD.Run2018_02Apr2020_private import allSamples as Run2018_02Apr2020_private #LOR added it to Switch to nanoAODv7 02Apr2020                                    
-    from nanoMET.nanoAOD.Autumn18_central_legacy_v1 import allSamples as Autumn18_central_legacy_v1
-    allSamples = Autumn18_central_legacy_v1 + Run2018_02Apr2020_private 
+    from nanoMET.nanoAOD.Summer19_UL18nanoAODv2 import allSamples as Summer19_UL18nanoAODv2
+    from nanoMET.nanoAOD.Run2018_ULnanoAODv2 import allSamples as Run2018_ULnanoAODv2
+    allSamples = Summer19_UL18nanoAODv2 + Run2018_ULnanoAODv2
 
 
 logger.info("Searching for sample %s"%options.samples[0])
@@ -137,6 +145,7 @@ logger.info("Will run over %s files", len(sample.files))
 
 # Put together skim
 isDiMuon        = options.skim.lower().startswith('dimuon')
+isDiMuonMod     = options.skim.lower().startswith('dimuon_mod')
 isDiElectron    = options.skim.lower().startswith('dielectron')
 isDiLep         = options.skim.lower().startswith('dilep')
 isTriLep        = options.skim.lower().startswith('trilep')
@@ -145,6 +154,8 @@ isSingleLep     = options.skim.lower().startswith('singlelep')
 skimConds = []
 if isDiMuon:
     skimConds.append( "Sum$(Muon_pt>15&&abs(Muon_eta)<2.5)>=2" )
+if isDiMuonMod:
+    skimConds.append( "Sum$(Muon_pt>15&&abs(Muon_eta)<2.5)>=2  + Sum$(Jet_pt>30&&Jet_jetId&&abs(Jet_eta)<2.4)>0" )
 elif isDiElectron:
     skimConds.append( "Sum$(Electron_pt>15&&abs(Electron_eta)<2.5)>=2" )
 elif isDiLep:
@@ -162,9 +173,19 @@ cut = '&&'.join(skimConds)
 logger.info("Using selection: %s", cut)
 
 # Main part
-
-directory = os.path.join( postprocessing_output_directory, "%s_%s"%(options.year, options.era) )
+ul_string = ""
+vfp_string = "" 
+if options.ul:
+    ul_string = "UL"
+if options.year == 2016 and options.prevfp:
+    vfp_string = "preVFP"
+    directory = os.path.join( postprocessing_output_directory, "%s_%s_%s_%s"%(options.year, ul_string, vfp_string ,options.era) )
+else:
+    directory = os.path.join( postprocessing_output_directory, "%s_%s_%s"%(options.year, ul_string ,options.era) )
 output_directory = os.path.join( directory, options.skim, sample.name )
+
+#print output_directory
+print "Output directory: %s"%output_directory
 
 fileNames = [ ('/'.join(x.split('/')[:-1]), x.split('/')[-1]) for x in sample.files if nonEmptyFile(x)  ]
 
@@ -197,32 +218,55 @@ sample.files = [ f[0] + '/' + f[1] for f in allFiles ]
 logger.info("Loading modules.")
 
 if year == 2016:
-    ## tuning from November 2019, with sumPt threshold of 15
-    puwProducer = puWeightProducer(pufile_mc2016,pufile_data2016,"pu_mc","pileup",verbose=False)
+
+    #puwProducer = puWeightProducer(pufile_mc2016,pufile_data2016,"pu_mc","pileup",verbose=False)
+    puwProducer = puWeightProducer("auto",pufile_data2016,"pu_mc","pileup",verbose=False)
+
+    #default from LOR
     metSigParamsMC      = [1.6789559564013943, 1.543666136735388, 1.4728342034302846, 1.4983602533711493, 1.4758351625239376, 0.008039429222660197, 0.6698834337575063]
     metSigParamsData    = [1.9034557745999647, 1.704569089762286, 1.5854229036413823, 1.4974876665993915, 1.673074548622476, 0.0015993706020479338, 0.6288393591242573]
-    JER                 = "Summer16_25nsV1_MC"          if not sample.isData else "Summer16_25nsV1_DATA"
-    archive             = '' if not sample.isData else "Summer16_07Aug2017_V11_DATA"
-    jetThreshold = 15
+
+    #new from CZZ after tuning
+
+    #latest version JER - changing according to preVFP or not
+    if options.prevfp:
+        JER                 = "Summer20UL16APV_JRV3_MC"          if not sample.isData else "Summer20UL16APV_JRV3_DATA"
+    else:
+        JER                 = "Summer20UL16_JRV3_MC"          if not sample.isData else "Summer20UL16_JRV3_DATA"
+        
+    jetThreshold = 15      #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
 
 elif year == 2017:
     puwProducer = puWeightProducer("auto",pufile_data2017,"pu_mc","pileup",verbose=False)
-    ## tuning from November 2019, with sumPt threshold of 15 
+    
+    #default from LOR 
     metSigParamsMC      = [1.7037614210331564, 1.7166071080686363, 1.6701114323915047, 1.502876236941622, 1.5780611987345947, -0.00012634174329968426, 0.6834329126092852]
     metSigParamsData    = [1.9410724258735805, 1.878895369894863, 1.9122297708165825, 1.7090755971750793, 2.0004413703111146, -0.0001347239857148459, 0.6732736907156339]
-    JER                 = "Fall17_V3_MC"                if not sample.isData else "Fall17_V3_DATA"
-    archive             = '' if not sample.isData else  "Fall17_17Nov2017_V32_DATA"
-    jetThreshold = 15
+    
+    #new from CZZ after tuning
+
+    
+    #latest version JER
+    JER                 = "Summer19UL17_JRV2_MC"                if not sample.isData else "Summer19UL17_JRV2_DATA"
+    
+    jetThreshold = 15     #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
+
+    #new from CZZ after tuning
+
 
 elif year == 2018:
     puwProducer = puWeightProducer("auto",pufile_data2018,"pu_mc","pileup",verbose=False)
-    ## tuning from November 2019, with sumPt threshold of 15 #LOR CHANGED IT Nov20, sumPt15
+    
+    #default from LOR
     metSigParamsMC      = [1.613165342723556, 1.5745879445558884, 1.636304135309313, 1.3234572369718391, 1.149196560879823, 0.000064832431405, 0.6052764471230091]
     metSigParamsData    = [1.6920121335793759, 1.6857326368531307, 1.5616058777682056, 1.354644121361604, 1.540213907405874, 0.0002222321882632476, 0.6423649298838915]
-    JER                 = "Autumn18_V7b_MC" if not sample.isData else "Autumn18_V7b_DATA"#DEFAULT. Lor may switch this two lines
-    #JER                 = "Autumn18_V7_MC" if not sample.isData else "Autumn18_V7_DATA"
-    archive             = '' if not sample.isData else "Autumn18_V19_DATA"
-    jetThreshold = 15
+    
+    #new from CZZ after tuning
+    
+    #latest version JER
+    JER                 = "Summer19UL18_JRV2_MC" if not sample.isData else "Summer19UL18_JRV2_DATA"
+    
+    jetThreshold = 15    #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
 
 if len(metSigParamsMC) == 12 and len(metSigParamsData) == 12:
     pTdependent = True
@@ -232,25 +276,26 @@ else:
     raise Exception("Wrong input parameter settings!" )
 
 
-
 unclEnThreshold = 15
 metSigParams    = metSigParamsMC if not sample.isData else metSigParamsData
-METCollection   = "METFixEE2017" if year == 2017 else "MET"
-
+METCollection   = "MET" 
 vetoEtaRegion = (2.65, 3.14) if year == 2017 else (10,10)
+METBranchName = 'MET'
 
-METBranchName = 'MET' if not year == 2017 else 'METFixEE2017'
-JMECorrector = createJMECorrector(isMC=(not sample.isData), dataYear=year, runPeriod=era, jesUncert="Total", jetType = "AK4PFchs", metBranchName=METBranchName, isFastSim=False)
+
+#create JMECorrector (takes into account JME corrections)
+JMECorrector = createJMECorrector(isMC=(not sample.isData), dataYear=year, ultraLegacy=options.ul, preVFP=options.prevfp,runPeriod=era, jesUncert="Total", jetType = "AK4PFchs", metBranchName=METBranchName, isFastSim=False)
 modules = [
     JMECorrector()
 ]
 
 
+# add METSigProducer
 if sample.isData:
     modules += [
         METSigTools(),
         lumiWeightProducer(1, isData=True),
-        METSigProducer(JER, metSigParams, useRecorr=True, jetThreshold=jetThreshold, METCollection=METCollection, vetoEtaRegion=vetoEtaRegion, pTdependent=pTdependent),
+        METSigProducer(JER, metSigParams, useRecorr=False, jetThreshold=jetThreshold, METCollection=METCollection, vetoEtaRegion=vetoEtaRegion, pTdependent=pTdependent),
     ]
 
 else:
@@ -258,7 +303,7 @@ else:
         puwProducer,
         lumiWeightProducer(lumiScaleFactor),
         METSigTools(),
-        METSigProducer(JER, metSigParams, useRecorr=True, calcVariations=True, jetThreshold=jetThreshold, METCollection=METCollection, vetoEtaRegion=vetoEtaRegion, pTdependent=pTdependent),
+        METSigProducer(JER, metSigParams, useRecorr=False, calcVariations=True, jetThreshold=jetThreshold, METCollection=METCollection, vetoEtaRegion=vetoEtaRegion, pTdependent=pTdependent),
     ]
 
 logger.info("Preparing post-processor.")
@@ -267,4 +312,5 @@ p = PostProcessor(output_directory,sample.files,cut=cut, modules=modules, jsonIn
 if not options.prepare:
     logger.info("Running ... ")
     p.run()
+    logger.info("Done.")
 
