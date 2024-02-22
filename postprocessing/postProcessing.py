@@ -35,6 +35,7 @@ argParser.add_argument('--year',        action='store', default=None, help="Whic
 argParser.add_argument('--era',         action='store', default="v1", help="Which era/subdirectory?")
 argParser.add_argument('--ul',          action='store_true', help="Ultra legacy?")
 argParser.add_argument('--prevfp',          action='store_true', help="preVFP for UL16?")
+argParser.add_argument('--after_tuning',          action='store_true', help="after MET Sig tuning?")
 
 options = argParser.parse_args()
 
@@ -75,15 +76,28 @@ if year == 2016:
         allSamples =  UL16_nanoAODv9 + UL16_DATA_nanoAODv9
 
 elif year == 2017:
-    from nanoMET.nanoAOD.Summer19_UL17nanoAODv2 import allSamples as Summer19_UL17nanoAODv2
-    from nanoMET.nanoAOD.Run2017_ULnanoAODv2 import allSamples as Run2017_ULnanoAODv2
-    allSamples = Summer19_UL17nanoAODv2 + Run2017_ULnanoAODv2
+
+    #check if era is v2 or v9
+    if options.era == "v2":
+        from nanoMET.nanoAOD.Summer19_UL17nanoAODv2 import allSamples as UL17_nanoAODv2
+        from nanoMET.nanoAOD.Run2017_ULnanoAODv2 import allSamples as UL17_DATA_nanoAODv2
+        allSamples =  UL17_nanoAODv2 + UL17_DATA_nanoAODv2
+    elif options.era == "v9":
+        from nanoMET.nanoAOD.UL17_nanoAODv9 import allSamples as UL17_nanoAODv9
+        from nanoMET.nanoAOD.UL17_DATA_nanoAODv9 import allSamples as UL17_DATA_nanoAODv9
+        allSamples =  UL17_nanoAODv9 + UL17_DATA_nanoAODv9
 
 elif year == 2018:
-    from nanoMET.nanoAOD.Summer19_UL18nanoAODv2 import allSamples as Summer19_UL18nanoAODv2
-    from nanoMET.nanoAOD.Run2018_ULnanoAODv2 import allSamples as Run2018_ULnanoAODv2
-    allSamples = Summer19_UL18nanoAODv2 + Run2018_ULnanoAODv2
-
+    #check if era is v2 or v9
+    if options.era == "v2":
+        from nanoMET.nanoAOD.Summer19_UL18nanoAODv2 import allSamples as Summer19_UL18nanoAODv2
+        from nanoMET.nanoAOD.Run2018_ULnanoAODv2 import allSamples as Run2018_ULnanoAODv2
+        allSamples = Summer19_UL18nanoAODv2 + Run2018_ULnanoAODv2
+    elif options.era == "v9":
+        from nanoMET.nanoAOD.UL18_nanoAODv9 import allSamples as UL18_nanoAODv9
+        from nanoMET.nanoAOD.UL18_DATA_nanoAODv9 import allSamples as UL18_DATA_nanoAODv9
+        allSamples =  UL18_nanoAODv9 + UL18_DATA_nanoAODv9
+   
 
 logger.info("Searching for sample %s"%options.samples[0])
 
@@ -175,14 +189,18 @@ logger.info("Using selection: %s", cut)
 # Main part
 ul_string = ""
 vfp_string = "" 
+tuning_string = ""  
 if options.ul:
     ul_string = "UL"
-if options.year == 2016 and options.prevfp:
+if options.after_tuning:
+    tuning_string = "_afterTuning"
+if (year == 2016) and (options.prevfp) and (options.ul):
     vfp_string = "preVFP"
     directory = os.path.join( postprocessing_output_directory, "%s_%s_%s_%s"%(options.year, ul_string, vfp_string ,options.era) )
 else:
     directory = os.path.join( postprocessing_output_directory, "%s_%s_%s"%(options.year, ul_string ,options.era) )
-output_directory = os.path.join( directory, options.skim, sample.name )
+output_directory = os.path.join( directory, options.skim + tuning_string, sample.name )
+
 
 #print output_directory
 print "Output directory: %s"%output_directory
@@ -219,22 +237,29 @@ logger.info("Loading modules.")
 
 if year == 2016:
 
-    #puwProducer = puWeightProducer(pufile_mc2016,pufile_data2016,"pu_mc","pileup",verbose=False)
     puwProducer = puWeightProducer("auto",pufile_data2016,"pu_mc","pileup",verbose=False)
 
     #default from LOR
     metSigParamsMC      = [1.6789559564013943, 1.543666136735388, 1.4728342034302846, 1.4983602533711493, 1.4758351625239376, 0.008039429222660197, 0.6698834337575063]
     metSigParamsData    = [1.9034557745999647, 1.704569089762286, 1.5854229036413823, 1.4974876665993915, 1.673074548622476, 0.0015993706020479338, 0.6288393591242573]
 
-    #new from CZZ after tuning
 
     #latest version JER - changing according to preVFP or not
     if options.prevfp:
+
+        metSigParamsMC      = [1.7233640933703651, 1.2691390420006226, 1.5375532736223367, 1.117583454841452, 1.3866901907564293, 1.0982546759948832, 1.3167826276317613, 1.1675469353582268, 0.8686258199233032, 1.1482926088244734, -2.811553978468071, 0.5731002212373926]
+        metSigParamsData    = [1.7580656620935375, 1.2070220617924559, 1.5814815279080778, 1.1650782764189878, 1.3580916199834423, 1.1545976315251152, 1.3517938828110463, 1.2310412386048015, 1.6861196003866394, 1.3949528242997369, -2.76995128200754, 0.5734561571452332]
+
         JER                 = "Summer20UL16APV_JRV3_MC"          if not sample.isData else "Summer20UL16APV_JRV3_DATA"
     else:
+
+        metSigParamsMC      = [1.8134640795782824, 1.3049913474511203, 1.5412316999582703, 1.1499924604629634, 1.4713894892246735, 1.1394791198883047, 1.4408581772571318, 1.1233727260593565, 0.8985494003108268, 1.0785717392318772, -2.7896110793175093, 0.567584527886775]
+        metSigParamsData    = [1.722705456620946, 1.1854411872324149, 1.6668258139467005, 1.1704968669701603, 1.4411842518222444, 1.0642895186507995, 1.4111396382049157, 1.0682471341930553, 1.6203662703781965, 1.3050002474637155, -3.556212288464914, 0.5608989926783028]
+
         JER                 = "Summer20UL16_JRV3_MC"          if not sample.isData else "Summer20UL16_JRV3_DATA"
         
-    jetThreshold = 15      #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
+        
+    jetThreshold = 15      #CZZ: this is the pT threhsold for the cleaned jets for the MET significance calculation
 
 elif year == 2017:
     puwProducer = puWeightProducer("auto",pufile_data2017,"pu_mc","pileup",verbose=False)
@@ -243,15 +268,15 @@ elif year == 2017:
     metSigParamsMC      = [1.7037614210331564, 1.7166071080686363, 1.6701114323915047, 1.502876236941622, 1.5780611987345947, -0.00012634174329968426, 0.6834329126092852]
     metSigParamsData    = [1.9410724258735805, 1.878895369894863, 1.9122297708165825, 1.7090755971750793, 2.0004413703111146, -0.0001347239857148459, 0.6732736907156339]
     
-    #new from CZZ after tuning
+    if options.after_tuning:
+        metSigParamsMC      = [1.9319381557475237, 2.053227410323807, 1.566481250656731, 1.7751894145399816, 1.4384473795588486, 1.6774394994653545, 1.260426908300591, 1.5674552068278789, 0.8399200202068797, 1.3995436781613169, -0.002840509419275279, 0.5878110236646981]
+        metSigParamsData    = [1.6115825141819764, 1.1110794733971592, 1.3811285061000527, 1.104905049486571, 1.1977508240363957, 1.0648369969112879, 1.090947915977327, 1.0711457774442328, 1.4061584971696568, 1.3545398609244717, -0.775059894967928, 0.5833974055365926]
 
-    
     #latest version JER
     JER                 = "Summer19UL17_JRV2_MC"                if not sample.isData else "Summer19UL17_JRV2_DATA"
     
-    jetThreshold = 15     #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
+    jetThreshold = 15     #CZZ: this is the pT threhsold for the cleaned jets for the MET significance calculation
 
-    #new from CZZ after tuning
 
 
 elif year == 2018:
@@ -260,13 +285,15 @@ elif year == 2018:
     #default from LOR
     metSigParamsMC      = [1.613165342723556, 1.5745879445558884, 1.636304135309313, 1.3234572369718391, 1.149196560879823, 0.000064832431405, 0.6052764471230091]
     metSigParamsData    = [1.6920121335793759, 1.6857326368531307, 1.5616058777682056, 1.354644121361604, 1.540213907405874, 0.0002222321882632476, 0.6423649298838915]
-    
-    #new from CZZ after tuning
+
+    if options.after_tuning:
+        metSigParamsMC      = [2.023408932263856, 1.7640497537496331, 1.5736929956827903, 1.5628035784885095, 1.5579864794037532, 1.4754706899030785, 1.3639530397257555, 1.3374652589718368, 0.9145628292028324, 1.4390079115843604, -0.0072142018840051225, 0.5791780692721527]
+        metSigParamsData    = [1.7346196922839918, 1.1993034600340677, 1.5850859914874125, 1.1227514159693774, 1.3414439861026852, 1.0334437290379994, 1.2317816052102761, 1.0292283972728804, 1.4829667698380211, 1.3167988952819045, -0.000984219010445442, 0.5985072357667814]
     
     #latest version JER
     JER                 = "Summer19UL18_JRV2_MC" if not sample.isData else "Summer19UL18_JRV2_DATA"
-    
-    jetThreshold = 15    #CZZ: fix this to 15 since this is harcoded also in jetmetUncertainties.py (nanoAOD-tools)
+
+    jetThreshold = 15    #CZZ: this is the pT threhsold for the cleaned jets for the MET significance calculation
 
 if len(metSigParamsMC) == 12 and len(metSigParamsData) == 12:
     pTdependent = True
