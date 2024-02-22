@@ -1,0 +1,68 @@
+import copy, os, sys
+from RootTools.core.Sample import Sample
+import ROOT
+
+def get_parser():
+    import argparse
+    argParser = argparse.ArgumentParser(description = "Argument parser for samples file")
+    argParser.add_argument('--overwrite',          action='store_true',    help="Overwrite current entry in db?")
+    argParser.add_argument('--update',             action='store_true',    help="Update current entry in db?")
+    argParser.add_argument('--check_completeness', action='store_true',    help="Check competeness?")
+    return argParser
+
+# Logging                                                                                                                                                                                                                             
+if __name__=="__main__":
+    import Samples.Tools.logger as logger
+    logger = logger.get_logger("INFO", logFile = None )
+    import RootTools.core.logger as logger_rt
+    logger_rt = logger_rt.get_logger("INFO", logFile = None )
+    options = get_parser().parse_args()
+    ov = options.overwrite
+    if options.update:
+        ov = 'update'
+else:
+    import logging
+    logger = logging.getLogger(__name__)
+    ov = False
+
+# Redirector                                                                                                                                                                                                                          
+from nanoMET.tools.user import redirector_global as redirector
+
+
+# DB                                                                                                                                                                                                                                  
+from nanoMET.tools.user import dbDir
+dbFile = dbDir+'/DB_Run2016_ULnanoAODv2.sql'
+logger.info("Using db file: %s", dbFile)
+
+# SingleMuon                                                                                                                                                                                                                                      
+SingleMuon_Run2016B_ver1_UL  = Sample.nanoAODfromDAS("SingleMuon_Run2016B_ver1_UL",   "/SingleMuon/Run2016B-ver1_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016B_ver2_UL  = Sample.nanoAODfromDAS("SingleMuon_Run2016B_ver2_UL",   "/SingleMuon/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016C_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016C_UL",        "/SingleMuon/Run2016C-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016D_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016D_UL",        "/SingleMuon/Run2016D-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016E_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016E_UL",        "/SingleMuon/Run2016E-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016F_HIPM_UL  = Sample.nanoAODfromDAS("SingleMuon_Run2016F_HIPM_UL",   "/SingleMuon/Run2016F-HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016F_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016F_UL",        "/SingleMuon/Run2016F-UL2016_MiniAODv1_NanoAODv2-v4/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016G_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016G_UL",        "/SingleMuon/Run2016G-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+SingleMuon_Run2016H_UL       = Sample.nanoAODfromDAS("SingleMuon_Run2016H_UL",        "/SingleMuon/Run2016H-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", dbFile=dbFile, redirector=redirector, overwrite=ov)
+
+SingleMuon = [
+    SingleMuon_Run2016B_ver1_UL,
+    SingleMuon_Run2016B_ver2_UL,
+    SingleMuon_Run2016C_UL,
+    SingleMuon_Run2016D_UL,
+    SingleMuon_Run2016E_UL,
+    SingleMuon_Run2016F_HIPM_UL,
+    SingleMuon_Run2016F_UL,
+    SingleMuon_Run2016G_UL,
+    SingleMuon_Run2016H_UL,
+]
+
+
+allSamples = SingleMuon
+
+for s in allSamples:
+    s.json      = os.path.expandvars("$CMSSW_BASE/src/Samples/Tools/data/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt")
+    s.isData    = True
+
+from Samples.Tools.AutoClass import AutoClass
+samples = AutoClass( allSamples )

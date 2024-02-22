@@ -51,45 +51,45 @@ TToLeptons_sch_amcatnlo = Sample.nanoAODfromDAS("TToLeptons_sch_amcatnlo", "/ST_
 T_tch_pow           = Sample.nanoAODfromDAS("T_tch_pow",        "/ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8/RunIISummer19UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=136.02) # inclusive sample
 TBar_tch_pow        = Sample.nanoAODfromDAS("TBar_tch_pow",     "/ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8/RunIISummer19UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",   dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=80.95) # inclusive sample
 T_tWch_ext          = Sample.nanoAODfromDAS("T_tWch_ext",       "/ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer19UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=35.85*(1-(1-3*0.108)**2))
-TBar_tWch_ext       = Sample.nanoAODfromDAS("TBar_tWch_ext",    "/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer19UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",   dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=35.85*(1-(1-3*0.108)**2))
+#TBar_tWch_ext       = Sample.nanoAODfromDAS("TBar_tWch_ext",    "/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer19UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",   dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=35.85*(1-(1-3*0.108)**2))
 
 top = [
-    TTLep_pow_noSC,
+    TTLep_pow,
     TToLeptons_sch_amcatnlo,
     T_tch_pow,
     TBar_tch_pow,
     T_tWch_ext,
-    TBar_tWch_ext,
+    #TBar_tWch_ext,
 ]
 
 ## di/multiboson
-WWToLNuQQ           = Sample.nanoAODfromDAS("WWToLNuQQ",        "/WWToLNuQQ_13TeV-powheg/llechner-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v3-b9659cf3bef5e21efe24288a402778f7/USER",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=49.997)# LOR COMM. IT IS MISSING!!!!
+#WWToLNuQQ           = Sample.nanoAODfromDAS("WWToLNuQQ",        "/WWToLNuQQ_13TeV-powheg/llechner-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v3-b9659cf3bef5e21efe24288a402778f7/USER",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=49.997)# LOR COMM. IT IS MISSING!!!!
 
-ZZTo2L2Q            = Sample.nanoAODfromDAS("ZZTo2L2Q",             "/ZZTo2L2Q_13TeV_powheg_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",                         dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=3.28)# LOR COMM. IT IS MISSING!!!!
+#ZZTo2L2Q            = Sample.nanoAODfromDAS("ZZTo2L2Q",             "/ZZTo2L2Q_13TeV_powheg_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",                         dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=3.28)# LOR COMM. IT IS MISSING!!!!
 
-WZTo1L3Nu           = Sample.nanoAODfromDAS("WZTo1L3Nu"  ,          "/WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",          dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=(47.13)*(3*0.108)*(0.2) )# LOR COMM. IT IS MISSING!!!!
-WZTo1L1Nu2Q         = Sample.nanoAODfromDAS("WZTo1L1Nu2Q",          "/WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",        dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=10.71)# LOR COMM. IT IS MISSING!!!!
-WZTo2L2Q            = Sample.nanoAODfromDAS("WZTo2L2Q"   ,          "/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",           dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=5.60)# LOR COMM. IT IS MISSING!!!!
-WZTo3LNu_ext        = Sample.nanoAODfromDAS("WZTo3LNu_ext",         "/WZTo3LNu_TuneCUETP8M1_13TeV-powheg-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3_ext1-v1_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=4.42965)# LOR COMM. IT IS MISSING!!!!
+#WZTo1L3Nu           = Sample.nanoAODfromDAS("WZTo1L3Nu"  ,          "/WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",          dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=(47.13)*(3*0.108)*(0.2) )# LOR COMM. IT IS MISSING!!!!
+#WZTo1L1Nu2Q         = Sample.nanoAODfromDAS("WZTo1L1Nu2Q",          "/WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",        dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=10.71)# LOR COMM. IT IS MISSING!!!!
+#WZTo2L2Q            = Sample.nanoAODfromDAS("WZTo2L2Q"   ,          "/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",           dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=5.60)# LOR COMM. IT IS MISSING!!!!
+#WZTo3LNu_ext        = Sample.nanoAODfromDAS("WZTo3LNu_ext",         "/WZTo3LNu_TuneCUETP8M1_13TeV-powheg-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3_ext1-v1_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",       dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=4.42965)# LOR COMM. IT IS MISSING!!!!
 
-VVTo2L2Nu           = Sample.nanoAODfromDAS("VVTo2L2Nu",            "/VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",          dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=11.95)# LOR COMM. IT IS MISSING!!!!
+#VVTo2L2Nu           = Sample.nanoAODfromDAS("VVTo2L2Nu",            "/VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",          dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=11.95)# LOR COMM. IT IS MISSING!!!!
 
 WWW_4F              = Sample.nanoAODfromDAS("WWW_4F",               "/WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",            dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.2086) #LOR COMM. IT is RunIISummer20!!!!!
-WWZ                 = Sample.nanoAODfromDAS("WWZ",                  "/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",               dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.1651)# ONLY WWZ_4F RunIISummer20 is present!!!!!!!
-WZZ                 = Sample.nanoAODfromDAS("WZZ",                  "/WZZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",               dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.05565)# LOR COMM. IT IS MISSING!!!!!!!!
+#WWZ                 = Sample.nanoAODfromDAS("WWZ",                  "/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",               dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.1651)# ONLY WWZ_4F RunIISummer20 is present!!!!!!!
+#WZZ                 = Sample.nanoAODfromDAS("WZZ",                  "/WZZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8/dspitzba-crab_RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3-v2_legacy_nano_v1-b9659cf3bef5e21efe24288a402778f7/USER",               dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.05565)# LOR COMM. IT IS MISSING!!!!!!!!
 ZZZ                 = Sample.nanoAODfromDAS("ZZZ",                  "/ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",               dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=0.01398)# LOR COMM. IT is RunIISummer20!!!!!  
 
 boson = [
-    WWToLNuQQ,
-    ZZTo2L2Q,
-    WZTo1L3Nu,
-    WZTo1L1Nu2Q,
-    WZTo2L2Q,
-    WZTo3LNu_ext,
-    VVTo2L2Nu,
+#    WWToLNuQQ,
+#    ZZTo2L2Q,
+#    WZTo1L3Nu,
+#    WZTo1L1Nu2Q,
+#    WZTo2L2Q,
+#    WZTo3LNu_ext,
+#    VVTo2L2Nu,
     WWW_4F,
-    WWZ,
-    WZZ,
+#    WWZ,
+#    WZZ,
     ZZZ,
     ]
 

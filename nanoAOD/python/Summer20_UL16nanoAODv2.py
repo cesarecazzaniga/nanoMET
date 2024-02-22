@@ -34,7 +34,7 @@ dbFile = dbDir+"/samples/DB_Summer20_UL16nanoAODv2.sql"
 logger.info("Using db file: %s", dbFile)
 
 ## DY
-DYJetsToLL_M50_LO_ext1   = Sample.nanoAODfromDAS("DYJetsToLL_M50_LO_ext1",  "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",   dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=5343.0) #CZZ: updated
+DYJetsToLL_M50_LO_ext1   = Sample.nanoAODfromDAS("DYJetsToLL_M50_LO_ext1",  "/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM",   dbFile=dbFile, redirector=redirector, instance="global", overwrite=ov, xSection=2075.14*3) #CZZ: updated (old: 5343.0)
 
 DY = [
     DYJetsToLL_M50_LO_ext1,

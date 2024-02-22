@@ -1,0 +1,4 @@
+root://cms-xrd-global.cern.ch//store/mc/RunIISummer20UL16NanoAODAPVv9/ST_s-channel_4f_leptonDecays_TuneCP5CR2_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v2/2500000/DBD0D4F2-1C40-1A40-8093-A793F4C9DCCA.root
+root://cms-xrd-global.cern.ch//store/mc/RunIISummer20UL16NanoAODAPVv9/ST_s-channel_4f_leptonDecays_TuneCP5CR2_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v2/2500000/AE54C69B-6887-054A-B6CE-2DAD808D5EBB.root
+root://cms-xrd-global.cern.ch//store/mc/RunIISummer20UL16NanoAODAPVv9/ST_s-channel_4f_leptonDecays_TuneCP5CR2_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v2/40000/4FFA9708-421B-2848-A9CC-5B422767F0AA.root
+root://cms-xrd-global.cern.ch//store/mc/RunIISummer20UL16NanoAODAPVv9/ST_s-channel_4f_leptonDecays_TuneCP5CR2_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v2/40000/A5204AAB-B137-3E40-9B41-8C9799A8651A.root
