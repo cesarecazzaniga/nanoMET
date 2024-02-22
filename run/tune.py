@@ -32,7 +32,9 @@ argParser.add_argument('--ttbarModifier',                 action='store',      t
 argParser.add_argument('--selection',                     action='store',      type=str, default="diMuon-looseLeptonVeto-onZ" )
 argParser.add_argument('--year',                          action='store',      type=int, default=2016, choices=[2016,2017,2018] )
 argParser.add_argument('--addon',                         action='store',      type=str, default=None, help='additional label in output file')
-argParser.add_argument('--runData',                       action='store_true', help='run data tuning', )
+argParser.add_argument('--runData',                       action='store_true', help='run data tuning' )
+argParser.add_argument('--prevfp',                       action='store_true', help='run on prevfp samples' )
+
 args = argParser.parse_args()
 
 # Logger
@@ -42,58 +44,110 @@ logger    = logger.get_logger(   args.logLevel, logFile = None)
 logger_rt = logger_rt.get_logger(args.logLevel, logFile = None)
 
 # define setting
+preVFP_string = ""
+if args.prevfp:
+    preVFP_string = "_preVFP"
+
 if args.year == 2016:
-    postProcessing_directory = "2016_v1/dimuon/"
+    postProcessing_directory = "2016_UL%s_%s/dimuon/"%(preVFP_string, args.addon)
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL", "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL", "HLT_IsoMu24", "HLT_IsoTkMu24"]
-    METPtVar                 = "MET_pt_nom"
-    METPhiVar                = "MET_phi_nom"
-    JetCollection            = "Jet_pt_nom"
+    METPtVar                 = "MET_pt"
+    METPhiVar                = "MET_phi"
+    JetCollection            = "Jet_pt"
     vetoEtaRegion            = (10.,10.)
 
-    if args.runData:
-        from nanoMET.samples.nanoTuples_Run2016_17Jul2018_postProcessed import *
-        samples              = [DoubleMuon_Run2016]
-        jer                  = "Summer16_25nsV1_DATA"
+
+    if args.prevfp:
+        if args.runData:
+            #from nanoMET.samples.nanoTuples_Run2016_ULnanoAODv2_postProcessed import *
+            from nanoMET.samples.nanoTuples_Run2016_ULnanoAODv9_preVFP_postProcessed_mumu import *
+            samples              = [DoubleMuon_Run2016_preVFP]
+            jer                  = "Summer20UL16APV_JRV3_DATA"
+        else:
+            #from nanoMET.samples.nanoTuples_UL16_nanoAODv2_postProcessed import *
+            #from nanoMET.samples.nanoTuples_Run2016_17Jul2018_postProcessed  import *
+            from nanoMET.samples.nanoTuples_UL16_nanoAODv9_preVFP_postProcessed_mumu  import *
+            samples              = [DY_LO_16, Top_16, diboson_16, rare_16]
+            jer                  = "Summer20UL16APV_JRV3_MC"
+
     else:
-        from nanoMET.samples.nanoTuples_Summer16_postProcessed import *
-        samples              = [DY_LO_16, Top_16, diboson_16, rare_16]
-        jer                  = "Summer16_25nsV1_MC"
+        if args.runData:
+            from nanoMET.samples.nanoTuples_Run2016_ULnanoAODv9_postProcessed_mumu import *
+            samples              = [DoubleMuon_Run2016]
+            jer                  = "Summer20UL16_JRV3_DATA"
+        else:
+            from nanoMET.samples.nanoTuples_UL16_nanoAODv9_postProcessed_mumu import *
+            samples              = [DY_LO_16, Top_16, diboson_16, rare_16]
+            jer                  = "Summer20UL16_JRV3_MC"
+
 
 elif args.year == 2017:
-    postProcessing_directory = "2017_v1/dimuon/"
-    args.selection          += "-BadEEJetVeto"
+
+
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ", "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8", "HLT_IsoMu27"]
-    METPtVar                 = "METFixEE2017_pt"
-    METPhiVar                = "METFixEE2017_phi"
-    JetCollection            = "Jet_pt_nom"
+    METPtVar                 = "MET_pt"                          #"METFixEE2017_pt"
+    METPhiVar                = "MET_phi"                         #"METFixEE2017_phi"
+    JetCollection            =  "Jet_pt_nom"                     #"Jet_pt_nom"
     vetoEtaRegion            = (2.65,3.14)
 
-    if args.runData:
-        from nanoMET.samples.nanoTuples_Run2017_31Mar2018_postProcessed import *
-#        samples              = [DoubleMuon_Run2017BCDE]
-        samples              = [DoubleMuon_Run2017]
-        jer                  = "Fall17_V3_DATA"
-    else:
-        from nanoMET.samples.nanoTuples_Fall17_postProcessed import *
-        samples              = [DY_LO_17, Top_17, diboson_17, rare_17]
-        jer                  = "Fall17_V3_MC"
+    if str(args.addon) == "v2":
+        postProcessing_directory = "2017_UL_v2/dimuon/"
+        if args.runData:
+            from nanoMET.samples.nanoTuples_Run2017_ULnanoAODv2_postProcessed_mumu import *
+    #        samples              = [DoubleMuon_Run2017BCDE]
+            samples              = [DoubleMuon_Run2017]
+            jer                  = "Summer19UL18_JRV2_DATA"
+        else:
+            from nanoMET.samples.nanoTuples_UL17_nanoAODv2_postProcessed_mumu import *
+            samples              = [DY_LO_17, Top_17, diboson_17, rare_17]
+            jer                  = "Summer19UL18_JRV2_MC"
+
+    if str(args.addon) == "v9":
+        postProcessing_directory = "2017_UL_v9/dimuon/"
+        if args.runData:
+            from nanoMET.samples.nanoTuples_Run2017_ULnanoAODv9_postProcessed_mumu import *
+            samples              = [DoubleMuon_Run2017]
+            jer                  = "Summer19UL18_JRV2_DATA"
+        else:
+            from nanoMET.samples.nanoTuples_UL17_nanoAODv9_postProcessed_mumu import *
+            samples              = [DY_LO_17, Top_17, diboson_17, rare_17]
+            jer                  = "Summer19UL18_JRV2_MC"
+
 
 elif args.year == 2018:
-    postProcessing_directory = "2018_v193/dimuon/"
+
     trigger                  = ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8", "HLT_IsoMu24"]
-    METPtVar                 = "MET_pt_nom"
-    METPhiVar                = "MET_phi_nom"
-    JetCollection            = "Jet_pt_nom"
+    METPtVar                 = "MET_pt"
+    METPhiVar                = "MET_phi"
+    JetCollection            = "Jet_pt"
     vetoEtaRegion            = (10.,10.)
 
-    if args.runData:
-        from nanoMET.samples.nanoTuples_Run2018_02Apr2020_postProcessed import *
-        samples              = [DoubleMuon_Run2018]
-        jer                  = "Autumn18_V7b_DATA"
-    else:
-        from nanoMET.samples.nanoTuples_Autumn18v7_postProcessed import *
-        samples              = [DY_LO_18, Top_18, diboson_18, rare_18]
-        jer                  = "Autumn18_V7b_MC"
+    if str(args.addon) == "v2": 
+
+        postProcessing_directory = "2018_UL_v2/dimuon/"
+
+        if args.runData:
+    #        from nanoMET.samples.nanoTuples_Run2018_02Apr2020_postProcessed import *
+            from nanoMET.samples.nanoTuples_Run2018_ULnanoAODv2_postProcessed_mumu import *
+            samples              = [DoubleMuon_Run2018]
+            jer                  = "Summer19UL18_JRV2_DATA"
+        else:
+            from nanoMET.samples.nanoTuples_UL18_nanoAODv2_postProcessed_mumu import *
+            samples              = [DY_LO_18, Top_18, rare_18]  #diboson_18
+            jer                  = "Summer19UL18_JRV2_MC"
+
+    if str(args.addon) == "v9": 
+
+        postProcessing_directory = "2018_UL_v9/dimuon/"
+
+        if args.runData:
+            from nanoMET.samples.nanoTuples_Run2018_ULnanoAODv9_postProcessed import *
+            samples              = [DoubleMuon_Run2018]
+            jer                  = "Summer19UL18_JRV2_DATA"
+        else:
+            from nanoMET.samples.nanoTuples_UL18_nanoAODv9_postProcessed import *
+            samples              = [DY_LO_18, Top_18, diboson_18, rare_18]
+            jer                  = "Summer19UL18_JRV2_MC"
 
 # calculate setting
 preselection    = cutInterpreter.cutString(args.selection)
@@ -102,12 +156,14 @@ eventfilter     = getFilterCut( args.year, isData=args.runData )
 sel             = "&&".join([preselection, triggerSel, eventfilter])
 JR              = JetResolution(jer)
 version         = postProcessing_directory.split("/")[0]
-outfile         = "results/tune_%s_%i_%s_%s_sumPt%i_max%i"%("DATA" if args.runData else "MC", args.year, jer, args.selection, args.jetThreshold, args.maxSig)
+outfile         = "results/UL_tune_%s_%i_%s_%s_sumPt%i_max%i"%("DATA" if args.runData else "MC", args.year, jer, args.selection, args.jetThreshold, args.maxSig)
 if args.addon:
     outfile    += "_"+str(args.addon)
 if args.pTdependent:
     outfile    += "_pTdep"
 outfile        += "_"+version
+if args.prevfp:
+    outfile    += "_prevfp"
 
 # run
 r = run(samples, sel, JR, outfile=outfile, maxN=3e5, METPtVar=METPtVar, METPhiVar=METPhiVar, JetCollection=JetCollection, vetoEtaRegion=vetoEtaRegion, jetThreshold=args.jetThreshold, puWeight="puWeight", ttbarModifier=args.ttbarModifier, pTdepMetSig=args.pTdependent)
