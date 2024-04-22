@@ -29,6 +29,15 @@ special_cuts = {
     "offZ":             "abs(dl_mass-91.1876)>10",
     "BadEEJetVeto":     "Sum$((2.6<abs(Jet_eta)&&abs(Jet_eta)<3&&Jet_pt>30))==0",
     "BadEEJetVetoLow":  "Sum$((2.6<abs(Jet_eta)&&abs(Jet_eta)<3&&Jet_pt>15))==0",
+    "zeroJetRemoval":   "Sum$((Jet_pt>30&&Jet_jetId&&abs(Jet_eta)<2.4))>0",
+    "zeroGoodJetVeto":   "Sum$((Jet_pt>50&&Jet_jetId&&abs(Jet_eta)<2.4&&Jet_cleanmask))>0",
+    "zeroGoodJets":    "Sum$((Jet_pt>50&&Jet_jetId&&abs(Jet_eta)<2.4&&Jet_cleanmask))==0",
+    "singleMuon16":    "(Sum$(Muon_pt>20&&Muon_isGoodMuon)==1",
+    "singleMuon16EleVeto":  "(Sum$(Muon_pt>30&&Muon_isGoodMuon)==1&&Sum$(Electron_pt>10&&abs(Electron_eta)<2.5&&Electron_cutBased>0&&abs(Electron_pfRelIso03_all)<0.4)==0)",
+    #ask for global (isGlobalMuon) or tracker (isTrackerMuon) muon here
+    "TunegoodIsoMuons18":    "(Sum$(Muon_pt>26&&abs(Muon_eta)<2.4&&Muon_isGoodMuon&&Muon_pfRelIso03_all<0.15&&abs(Muon_dxy)<0.045&&abs(Muon_dz)<0.2&&Muon_isGlobal&&Muon_mediumId) "
+    + "+ Sum$(Muon_pt>26&&abs(Muon_eta)<2.4&&Muon_isGoodMuon&&Muon_pfRelIso03_all<0.15&&abs(Muon_dxy)<0.045&&abs(Muon_dz)<0.2&&Muon_isGlobal&&Muon_isTracker&&Muon_mediumId) )==2",
+
   }
 
 continous_variables = [ ("met", "MET_pt"), ("mll", "dl_mass"), ("nPV", "PV_npvsGood"), ("nSoftJet", "Sum$(Jet_pt>15&&Jet_pt<30)"), ("sumPt", "MET_sumPtUnclustered") ]
