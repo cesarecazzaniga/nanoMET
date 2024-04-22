@@ -25,15 +25,15 @@ git clone https://github.com/HephyAnalysisSW/RootTools.git
 cd $CMSSW_BASE/src
 git clone https://github.com/cms-nanoAOD/nanoAOD-tools.git PhysicsTools/NanoAODTools
 cd PhysicsTools/NanoAODTools
-git remote add metsig https://github.com/llechner/nanoAOD-tools.git
+git remote add metsig https://github.com/cesarecazzaniga/nanoAOD-tools.git
 git fetch metsig
-git checkout METSig
+git checkout metsig/MetSig_devel
 ```
 
 # nanoMET
 ```
 cd $CMSSW_BASE/src
-git clone -b moreParams https://github.com/llechner/nanoMET.git
+git clone https://github.com/cesarecazzaniga/nanoMET.git
 scram b -j 8
 ```
 
