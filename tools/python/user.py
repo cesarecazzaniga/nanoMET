@@ -16,6 +16,12 @@ if os.environ['USER'] in ['lvigilan']:
     data_directory          = "/eos/home-l/lvigilan/METSig2/OUTPUT_DIR"
     postprocessing_output_directory = "/eos/home-l/lvigilan/METSig2/OUTPUT_DIR"
 
+if os.environ['USER'] in ['cazzanig']:
+    plot_directory          = "/afs/cern.ch/user/c/cazzanig/MET_studies/MET_significance/PLOT_dir/"
+    data_directory          = "/eos/cms/store/group/phys_jetmet/cazzanig/MET_studies/MET_significance/OUTPUT_DIR/"
+    postprocessing_output_directory = "/eos/cms/store/group/phys_jetmet/cazzanig/MET_studies/MET_significance/OUTPUT_DIR/"
+
+
 
 
 dbDir = '%s/src/nanoMET/tools/cache/'%os.environ['CMSSW_BASE']
