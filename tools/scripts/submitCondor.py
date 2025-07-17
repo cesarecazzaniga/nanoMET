@@ -121,6 +121,7 @@ if __name__ == '__main__':
         condorCommands += ["executable            = %s"%options.execFile]
         condorCommands += ['+JobFlavour           = "%s"'%options.queue]
         condorCommands += ['environment           = "IWD=%s"' %cwd]
+	condorCommands += ['MY.SingularityImage   = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"']
         if options.discSpace:
             condorCommands += ["request_disk          = %i"%(options.discSpace*1000)] # disc space in kB (MB*1000)
         if options.memory:
