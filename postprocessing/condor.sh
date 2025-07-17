@@ -9,6 +9,8 @@ export USER=$(whoami)
 initial="$(echo $USER | head -c 1)"
 export SCRAM_ARCH=slc7_amd64_gcc700
 
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+
 echo "---------------------"
 echo "Grid certificate 1"
 voms-proxy-info --all
