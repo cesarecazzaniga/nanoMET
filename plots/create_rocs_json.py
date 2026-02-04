@@ -164,7 +164,9 @@ def read_histos(input_dir,variables,signal,backgrounds):
             #Normalize the sum of all backgrounds
             histos_norm["backgrounds"]["all"][var].Scale(1/histos_norm["backgrounds"]["all"][var].Integral())
 
-    return histos
+        
+    print(histos_norm["backgrounds"]["all"].keys())
+    return histos_norm
 
 
 def compute_ROCs(histos,variables,signal,backgrounds,output_dir):
@@ -172,6 +174,8 @@ def compute_ROCs(histos,variables,signal,backgrounds,output_dir):
     rocs = {
          bkg : {"eff_s":{} , "eff_b":{}} for bkg in backgrounds + ["all"]
     }
+
+    print("All background keys: ",histos["backgrounds"]["all"].keys())
 
     #loop over variables
     for var in tqdm(variables):
@@ -191,6 +195,8 @@ def compute_ROCs(histos,variables,signal,backgrounds,output_dir):
                 rocs[bkg]["eff_s"][var] = []
                 rocs[bkg]["eff_b"][var] = []
 
+        print(backgrounds_histos["all"].keys())
+
         #Compute integral of signal histogram
         signal_integral = signal_histo.Integral()
         print("Signal integral " + var + ": " + str(signal_integral))
@@ -208,6 +214,8 @@ def compute_ROCs(histos,variables,signal,backgrounds,output_dir):
             signal_integral = signal_histo.Integral(i,signal_histo.GetNbinsX())
 
             #Get total background integral
+            print(list(backgrounds_histos["all"].keys()))
+            print(backgrounds_histos['Top'].keys())
             total_background_integral = backgrounds_histos["all"][var].Integral(i,signal_histo.GetNbinsX())
 
             #Compute signal efficiency
@@ -260,9 +268,8 @@ def main():
     print("==> Starting ROCs analysis from histograms <==")
 
     #double muon dataset
-    input_dir = "/afs/cern.ch/user/p/piedra/work/public/forMetSignificance/analysisPlots/2018/UL_2018_v9_small_tuneDoubleMuALL_UL_2018_v9_norm_sumPt15_pTdep/diMuon-looseLeptonVeto-onZ-noEEJets/mumu/lin/"
-    output_dir = cwd + "/ROC_dir/preliminary_an_met_sigDY_perf_DoubleMuon_results_NEW/"
-
+    input_dir="/afs/cern.ch/user/p/piedra/work/public/forMetSignificance/analysisPlots/2018/UL_2018_v9_small_tuneDoubleMuALL_UL_2018_v9_norm_sumPt15_pTdep/diMuon-looseLeptonVeto-onZ-zeroGoodJetVeto/mumu/lin/"
+    output_dir = cwd + "/ROC_dir/preliminary_an_met_sigDY_perf_DoubleMuon_results_NEW_jetveto/"
 
     #Create output directory if it does not exist
     if not os.path.exists(output_dir):
@@ -276,7 +283,7 @@ def main():
 
     #Define signal and backgrounds - keep same naming as for histograms script
     signal = ["DY"]
-    backgrounds = ["diboson", "Top", "rare" ,  "QCD" , "WJets" ]
+    backgrounds = ["diboson", "Top", "rare" ]
 
     #Define year
     year = "Run2"
@@ -298,6 +305,3 @@ def main():
 if (__name__ == "__main__"):
 
     main()
-
-
-
